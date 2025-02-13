@@ -1,0 +1,21 @@
+<!--
+    I know for PostCreate class-based view you're expecting it to be called blog/post_create.html, but 
+    it actually has to be called blog/post_form.html.
+-->
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <!-- form-group, border-bottom, and mb-4 [aka margin-bottom-4] are just bootstrap classes -->
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Blog Post</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Post</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,11 @@
+===============================================================================================
+NOTE 1
+===============================================================================================
+
+path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login')
+
+The reason we use as_view(template_name='users/login.html') is because by default, Django has 
+set it up to when we use their LoginView to go to the template [registration/login.html]. We 
+do not have an application called registration but we have a registration feature in our users 
+application. So, we just override Django's default behavior to look for a template called 
+[users/login.html] instead.

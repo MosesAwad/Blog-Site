@@ -1,0 +1,46 @@
+===============================================================================================
+NOTE 1
+===============================================================================================
+MEDIA_ROOT is a setting that specifies where our uploaded files will be located on the filesystem.
+So now when we upload a file to /profile-pics like we did in /users/models.py as follows
+
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+
+The image is automatically uploaded to a directory called /media/profile_pics present (which is also 
+automatically created) at the root of our base directory. 
+
+The reason why we use this MEDIA_ROOT setting is because if multiple models were to use images (besides 
+the profile pic image in our profile model), then each model will create a separate directory (like 
+profile_pics) at the root of the base directory; this would quickly clutter up the base directory and 
+is just unorganized. So, utilizing the MEDIA_ROOT setting where all models will instead upload to 
+subdirectories within /media like /media/profile_pics is just much cleaner.
+
+In this line
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+the 'media' is just a string and the whole os.path.join() method returns a string which specifies the 
+directory of our project and attaches a /media after it; and it is designed to work on any OS. So for us,
+that would look like
+/home/moosa/Desktop/django_project/media
+
+You can verify that in the shell as follows:
+python manage.py shell 
+from django.conf import settings
+settings.MEDIA_ROOT [or print(settings.MEDIA_ROOT)]
+
+===============================================================================================
+NOTE 2
+===============================================================================================
+
+The reason we set this LOGIN_REDIRECT_URL setting is because when a user logs in, it automatically redirects the 
+user to /accounts/profile. We do not want that since we do not have any views attached to this URL just yet. 
+Besides, we also think it's better to redirect the users to /blog so we just use the name we assigned to that 
+url-pattern which is 'blog-home'
+
+===============================================================================================
+NOTE 3
+===============================================================================================
+
+The LOGIN_URL setting is there to make the @login_required decorator in the profile view of /users/views.py go to 
+the correct url (/login) and not the default (/accounts/login). So basically, this setting specifies the URL where 
+Django redirects users when they need to log in. It's a built-in Django setting, just like LOGIN_REDIRECT_URL that 
+Django's authentication system automatically recognizes.

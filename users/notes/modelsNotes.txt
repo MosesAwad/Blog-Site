@@ -1,0 +1,16 @@
+=================================================================================
+Note 1
+=================================================================================
+One to one relationship is unlike the one-to-many relationship we saw earlier with posts
+and users. With Posts, a single user can have multiple posts. Here, however, a single 
+User can have only one profile. The on_delete=models.CASCADE means the same thing though, 
+if the user is deleted, then delete the profile as well; but deleting the profile does not 
+delete the user.
+
+
+=================================================================================
+Note 2
+=================================================================================
+The big image is now resized to a max of 300x300 because that's the max size we want to display on our site
+so if a user uploads anything bigger, we're gonna resize it because it'll take up space and slow down our wesbite
+when rendering the image for no reason, because either way we dont want to display larger than 300x300.

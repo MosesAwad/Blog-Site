@@ -1,0 +1,49 @@
+================================================================================================
+Note 1
+================================================================================================
+
+The ".models" just means, from the models.py file in the current directory
+
+================================================================================================
+Note 2
+================================================================================================
+
+When using class based views, Django by default looks for the templae with this naming convention 
+<appName>/<model>_<viewtype>.html so blog/post_list.html [model = Post is written in the defintion 
+of PostListView and it inherits from ListView so viewtype = list]. So template_name changes where 
+Django should look for the template.
+
+I know for PostCreate class-based view you're expecting it to be called blog/post_create.html, but 
+it actually has to be called blog/post_form.html.
+
+================================================================================================
+Note 3
+================================================================================================
+
+By default, Django will use 'object' as the name of the context passed into it. So in the templates, 
+instead of saying post.author, we would have to say object.author. To avoid that, we use the line 
+context_object_name = 'posts'.
+
+================================================================================================
+Note 4
+================================================================================================
+
+ordering = 'date_posted' sorts by date from oldest to newest
+ordering = '-date_posted' also sorts by date but from newest to oldest
+
+We instead shifted to the def get_query_set because we are overriding the query that this list view 
+will be making when we make our own custom get_query_set. So, we put it in the function itself so 
+it still filters posts by author AND orders them by date_posted.
+
+
+================================================================================================
+Note 5
+================================================================================================
+
+Because the author must be sent as well when submitting a form [a post is not allowed to be created with an author]
+
+================================================================================================
+Note 6
+================================================================================================
+
+By default, it will use the same template as PostCreate class-based view, which is [blog/post_form.html].

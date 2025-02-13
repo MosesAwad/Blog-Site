@@ -1,0 +1,31 @@
+Note 1
+Here, we are establishing a one-to-many relationship b/w Post & User models since one author can have 
+multiple posts. To do so, we must use foreign keys. When we use foreign keys, it means that each record 
+in the related model can be associated with multiple records in the main model. In this case, the main 
+model is the Post model and the related model is the User model.
+
+on_delete=models.CASCADE means that if a user is deleted, then we are also going to delete their posts.
+But if you delete a post, it won't delete the user.
+
+
+For next few tips, lets say we do
+user = User.objects.filter(username='moosa').first()
+
+Now, to get all the posts that a user has created, you can do:
+user.post_set.all()       [yes, it is modelName_set]
+
+You can also directly add a new post to Post model by doing:
+user.post_set.create(title='Blog 3', content='Third Post Content!')   [No need to specify author if you use this method 
+                                                                         AND also no need to do .save() to actually add the 
+                                                                         new Query to the model] 
+
+Note 2
+This dunder function changes the display of our model from this:
+
+>>> Post.objects.all()
+<QuerySet [<Post: Post object (1)>]>
+
+to this:
+>>> Post.objects.all()
+<QuerySet [<Post: Blog 1>]>
+

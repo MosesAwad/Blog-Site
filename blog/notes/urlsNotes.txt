@@ -1,0 +1,8 @@
+================================================================================================
+Note 1
+================================================================================================
+
+<int:pk> is a variable where int is the type in the DB and pk is the primary key listed in the DB.
+In the home.html, we can send that primary key as an argument like this:
+    href="{% url 'post-detail' post.id %}"
+where post-detail and is the name we gave to the post/x/ urlPattern.
