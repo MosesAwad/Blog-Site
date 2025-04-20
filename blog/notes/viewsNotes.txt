@@ -40,7 +40,7 @@ it still filters posts by author AND orders them by date_posted.
 Note 5
 ================================================================================================
 
-Because the author must be sent as well when submitting a form [a post is not allowed to be created with an author]
+Because the author must be sent as well when submitting a form [a post is not allowed to be created without an author]
 
 ================================================================================================
 Note 6
